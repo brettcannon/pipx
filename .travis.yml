@@ -1,0 +1,19 @@
+language: python
+sudo: required
+python:
+  - "3.6"
+  - "3.7"
+
+matrix:
+  allow_failures:
+    - python: '3.7-dev'
+    - python: '3.8-dev'
+
+install:
+  - curl https://raw.githubusercontent.com/cs01/pipx/master/get-pipx.py | python
+
+cache:
+  pip: true
+  yarn: true
+  directories:
+    - node_modules
