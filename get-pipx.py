@@ -64,6 +64,11 @@ class Venv:
         self._run_pip(["install", "--upgrade", package])
 
     def _run_pip(self, cmd):
+        if not Path(self.pip_path).is_file():
+            print(f"{self.pip_path} not found. Contents of {str(self.root)}:")
+            for p in self.root.iterdir():
+                print(p)
+            fail("pip binary not found in virtual environment")
         cmd = [self.pip_path] + cmd
         if not self.verbose:
             cmd.append("-q")
@@ -226,6 +231,7 @@ def main(argv=sys.argv[1:]):
     print()
     print("Questions or comments? See https://github.com/cs01/pipx")
     print("Enjoy! ✨ 🌟 ✨")
+
 
 if __name__ == "__main__":
     main()
