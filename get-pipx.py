@@ -68,7 +68,7 @@ class Venv:
             print(f"{self.pip_path} not found. Contents of {str(self.bin_path)}:")
             for p in self.bin_path.iterdir():
                 print(p)
-            print("attempting to install pip")
+            print("Expected to see pip, but it was not there. Trying to install pip manually...")
             _run(
                 [
                     "curl",
@@ -77,7 +77,9 @@ class Venv:
                     self.bin_path / "get-pip.py",
                 ]
             )
-            _run([self.python_path, self.bin_path / "get-pip.py", "-t", self.bin_path])
+            _run([self.python_path, self.bin_path / "get-pip.py", "-t", self.root])
+            for p in self.bin_path.iterdir():
+                print(p)
         if not Path(self.pip_path).is_file():
             fail("pip binary not found in virtual environment")
         cmd = [self.pip_path] + cmd
