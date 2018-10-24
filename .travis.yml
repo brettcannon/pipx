@@ -3,11 +3,9 @@ sudo: required
 python:
   - "3.6"
 
-install:
-  - curl https://raw.githubusercontent.com/cs01/pipx/master/get-pipx.py | python - --verbose
-
 script:
   - python -m tests.run_tests
+  - python get-pipx.py --verbose
 
 cache:
   pip: true
