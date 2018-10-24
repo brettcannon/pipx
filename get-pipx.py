@@ -65,7 +65,7 @@ class Venv:
 
     def _run_pip(self, cmd):
         if not Path(self.pip_path).is_file():
-            print(f"{self.pip_path} not found. Contents of {str(self.root)}:")
+            print(f"{self.pip_path} not found. Contents of {str(self.bin_path)}:")
             for p in self.root.iterdir():
                 print(p)
             fail("pip binary not found in virtual environment")
