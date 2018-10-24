@@ -83,7 +83,7 @@ class Venv:
             for p in self.bin_path.iterdir():
                 logging.info(p)
             fail("pip binary not found in virtual environment")
-        cmd = [self.pip_path] + cmd
+        cmd = [self.python_path, '-m', 'pip'] + cmd
         if not self.verbose:
             cmd.append("-q")
         _run(cmd)
